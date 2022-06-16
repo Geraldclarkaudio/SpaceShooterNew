@@ -1,0 +1,70 @@
+﻿using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class PowerUp : MonoBehaviour
+{
+    [SerializeField]
+    private float _speed;
+
+    private Player player;
+
+    //PowerUpIDs
+    //0 = triple
+    //1 = Speed
+    //2 = Shield
+    [SerializeField]
+    private int powerUpID; 
+
+    // Start is called before the first frame update
+    void Start()
+    {
+        player = GameObject.Find("Player").GetComponent<Player>();
+        if(player == null)
+        {
+            Debug.LogError("Player is Null");
+        }
+    }
+
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        if(other.CompareTag("Player"))
+        {
+            switch(powerUpID)
+            {
+                case 0:
+                    player.TripleShotActive();
+                    break;
+                case 1:
+                    if(player.isSpeedACtive == true)
+                    {
+                        return;
+                    }
+                    else
+                    {
+                        player.SpeedActive();
+                    }
+                    break;
+                case 2:
+                    player.ShieldActive();
+                    break;
+                case 3:
+                    player.AddHealth();
+                    break;
+
+            }
+            Destroy(this.gameObject);
+        }
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+        transform.Translate(Vector3.down * _speed * Time.deltaTime);
+
+        if(transform.position.y <= -7.0f)
+        {
+            Destroy(this.gameObject);
+        }
+    }
+}
