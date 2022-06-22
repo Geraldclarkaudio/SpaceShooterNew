@@ -7,11 +7,17 @@ public class Enemy : MonoBehaviour
     [SerializeField]
     private float _speed;
 
-    private bool hit = false; // delays the time it takes to destroy. 
-
     private Player _player;
     private Animator _anim;
     private BoxCollider2D col;
+
+    [SerializeField]
+    private GameObject enemyLaser;
+
+    private float _fireRate = 3;
+    private float _canFire = -1f;
+
+    public AK.Wwise.Event destroyed;
 
     private void Start()
     {
@@ -33,18 +39,36 @@ public class Enemy : MonoBehaviour
             _anim.SetBool("Hit", true);
             _player.ScoreKeeper(10);
             col.enabled = false;
+            destroyed.Post(gameObject);
             Destroy(this.gameObject, 2.5f);
         }
 
         if(other.CompareTag("Player"))
         {
-            Destroy(this.gameObject);
+            _anim.SetBool("Hit", true);
+            destroyed.Post(gameObject);
+            Destroy(this.gameObject, 2.5f); 
             _player.Damage();
         }
     }
     void Update()
     {
         Movement();
+
+        if(Time.time >_canFire)
+        {
+            _fireRate = Random.Range(3f, 7f);
+            _canFire = Time.time + _fireRate;
+           GameObject enemyLaserGo = Instantiate(enemyLaser, transform.position, Quaternion.identity);
+            Laser[] lasers = enemyLaserGo.GetComponentsInChildren<Laser>();
+            //lasers[0].AssignEnemyLaser();
+           // lasers[1].AssignEnemyLaser();
+           //this also means:
+           for(int i = 0; i < lasers.Length; i++)
+            {
+                lasers[i].AssignEnemyLaser();
+            }
+        }
     }
 
     private void Movement()
@@ -56,5 +80,10 @@ public class Enemy : MonoBehaviour
         {
             transform.position = new Vector3(randomX, 9, 0);
         }
+    }
+
+    private void Fire()
+    {
+
     }
 }

@@ -62,6 +62,15 @@ public partial class @GameInput : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": ""Hold(duration=0.1)"",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""QuitButton"",
+                    ""type"": ""Button"",
+                    ""id"": ""eb2e08d2-b747-42df-bbe1-5368bc8575b2"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -196,6 +205,28 @@ public partial class @GameInput : IInputActionCollection2, IDisposable
                     ""action"": ""Thruster"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""4391aceb-6c47-4f02-9df7-20450efa18ac"",
+                    ""path"": ""<Keyboard>/escape"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""QuitButton"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""d2fd6aa9-32ed-4709-be9f-a619d5801709"",
+                    ""path"": ""<Gamepad>/start"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""QuitButton"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -208,6 +239,7 @@ public partial class @GameInput : IInputActionCollection2, IDisposable
         m_PlayerControls_Fire = m_PlayerControls.FindAction("Fire", throwIfNotFound: true);
         m_PlayerControls_Restart = m_PlayerControls.FindAction("Restart", throwIfNotFound: true);
         m_PlayerControls_Thruster = m_PlayerControls.FindAction("Thruster", throwIfNotFound: true);
+        m_PlayerControls_QuitButton = m_PlayerControls.FindAction("QuitButton", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -271,6 +303,7 @@ public partial class @GameInput : IInputActionCollection2, IDisposable
     private readonly InputAction m_PlayerControls_Fire;
     private readonly InputAction m_PlayerControls_Restart;
     private readonly InputAction m_PlayerControls_Thruster;
+    private readonly InputAction m_PlayerControls_QuitButton;
     public struct PlayerControlsActions
     {
         private @GameInput m_Wrapper;
@@ -279,6 +312,7 @@ public partial class @GameInput : IInputActionCollection2, IDisposable
         public InputAction @Fire => m_Wrapper.m_PlayerControls_Fire;
         public InputAction @Restart => m_Wrapper.m_PlayerControls_Restart;
         public InputAction @Thruster => m_Wrapper.m_PlayerControls_Thruster;
+        public InputAction @QuitButton => m_Wrapper.m_PlayerControls_QuitButton;
         public InputActionMap Get() { return m_Wrapper.m_PlayerControls; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -300,6 +334,9 @@ public partial class @GameInput : IInputActionCollection2, IDisposable
                 @Thruster.started -= m_Wrapper.m_PlayerControlsActionsCallbackInterface.OnThruster;
                 @Thruster.performed -= m_Wrapper.m_PlayerControlsActionsCallbackInterface.OnThruster;
                 @Thruster.canceled -= m_Wrapper.m_PlayerControlsActionsCallbackInterface.OnThruster;
+                @QuitButton.started -= m_Wrapper.m_PlayerControlsActionsCallbackInterface.OnQuitButton;
+                @QuitButton.performed -= m_Wrapper.m_PlayerControlsActionsCallbackInterface.OnQuitButton;
+                @QuitButton.canceled -= m_Wrapper.m_PlayerControlsActionsCallbackInterface.OnQuitButton;
             }
             m_Wrapper.m_PlayerControlsActionsCallbackInterface = instance;
             if (instance != null)
@@ -316,6 +353,9 @@ public partial class @GameInput : IInputActionCollection2, IDisposable
                 @Thruster.started += instance.OnThruster;
                 @Thruster.performed += instance.OnThruster;
                 @Thruster.canceled += instance.OnThruster;
+                @QuitButton.started += instance.OnQuitButton;
+                @QuitButton.performed += instance.OnQuitButton;
+                @QuitButton.canceled += instance.OnQuitButton;
             }
         }
     }
@@ -326,5 +366,6 @@ public partial class @GameInput : IInputActionCollection2, IDisposable
         void OnFire(InputAction.CallbackContext context);
         void OnRestart(InputAction.CallbackContext context);
         void OnThruster(InputAction.CallbackContext context);
+        void OnQuitButton(InputAction.CallbackContext context);
     }
 }

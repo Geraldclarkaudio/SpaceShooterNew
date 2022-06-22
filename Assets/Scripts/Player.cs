@@ -9,7 +9,7 @@ public class Player : MonoBehaviour
     private SpawnManager _spawnManager;
     private UIManager _uiManager; 
 
-    private GameInput _input;
+    public GameInput _input;
     [SerializeField]
     private float _speed;
     [SerializeField]
@@ -242,14 +242,14 @@ public class Player : MonoBehaviour
         {
             _lives++;
             _uiManager.UpdateLives(_lives);
-            engines[1].SetActive(false);
+            engines[0].SetActive(false);
         }
 
         if(_lives == 1)
         {
             _lives++;
             _uiManager.UpdateLives(_lives);
-            engines[0].SetActive(false);
+            engines[1].SetActive(false);
         }
 
     }

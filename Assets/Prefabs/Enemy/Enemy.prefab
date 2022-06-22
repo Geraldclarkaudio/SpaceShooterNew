@@ -48,6 +48,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _speed: 5
+  enemyLaser: {fileID: 1991304960981758306, guid: aa8af2dc34cfb2d43bfcc15f80100ee7,
+    type: 3}
+  destroyed:
+    idInternal: 0
+    valueGuidInternal: 
+    WwiseObjectReference: {fileID: 11400000, guid: e84aaab075ade5146825047092e55c56,
+      type: 2}
 --- !u!212 &6206483264453477519
 SpriteRenderer:
   m_ObjectHideFlags: 0

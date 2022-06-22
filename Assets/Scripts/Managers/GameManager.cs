@@ -18,11 +18,30 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    private Player player;
     public bool isGameOver;
+
+    private void Start()
+    {
+        player = GameObject.Find("Player").GetComponent<Player>();
+        StartCoroutine(WaitForControls());
+    }
+
+    private void QuitButton_performed(UnityEngine.InputSystem.InputAction.CallbackContext obj)
+    {
+        Application.Quit();
+    }
 
     private void Awake()
     {
         _instance = this;
     }
 
+    private IEnumerator WaitForControls()
+    {
+        yield return new WaitForSeconds(1.0f);
+        player._input.PlayerControls.QuitButton.performed += QuitButton_performed;
+
+
+    }
 }
