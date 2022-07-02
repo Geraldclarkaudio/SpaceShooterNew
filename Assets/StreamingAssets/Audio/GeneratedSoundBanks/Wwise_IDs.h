@@ -18,7 +18,26 @@ namespace AK
         static const AkUniqueID EXPLOSION1 = 753483767U;
         static const AkUniqueID PLAYER_CHARGE_UP = 366335619U;
         static const AkUniqueID PLAYERLASER = 2920283527U;
+        static const AkUniqueID POWERUPCOLLECTED = 2007110528U;
     } // namespace EVENTS
+
+    namespace SWITCHES
+    {
+        namespace POWERUPS
+        {
+            static const AkUniqueID GROUP = 2600048462U;
+
+            namespace SWITCH
+            {
+                static const AkUniqueID AMMO = 3554434311U;
+                static const AkUniqueID HEALTH = 3677180323U;
+                static const AkUniqueID SHIELD = 1161967626U;
+                static const AkUniqueID SPEED = 640949982U;
+                static const AkUniqueID TRIPLESHOT = 2134712769U;
+            } // namespace SWITCH
+        } // namespace POWERUPS
+
+    } // namespace SWITCHES
 
     namespace GAME_PARAMETERS
     {

@@ -8,7 +8,8 @@ public class UIManager : MonoBehaviour
 {
     [SerializeField]
     private TMP_Text scoreText;
-
+    [SerializeField]
+    private TMP_Text ammoText;
     [SerializeField]
     private Sprite[] livesSprites;
     [SerializeField]
@@ -18,6 +19,7 @@ public class UIManager : MonoBehaviour
     private GameObject gameOverText;
     [SerializeField]
     private GameObject restartText;
+   
 
     private Player player; 
     // Start is called before the first frame update
@@ -25,6 +27,7 @@ public class UIManager : MonoBehaviour
     {
         liveImage.material.color = Color.white;
         scoreText.text = "Score: " + 0;
+        ammoText.text = "15";
         gameOverText.SetActive(false);
         restartText.SetActive(false);
         player = GameObject.Find("Player").GetComponent<Player>();
@@ -33,6 +36,10 @@ public class UIManager : MonoBehaviour
     public void UpdateScore(int playerScore)
     {
         scoreText.text = "Score: " + playerScore.ToString();
+    }
+    public void UpdateAmmo(int ammoAmount)
+    {
+        ammoText.text = ammoAmount.ToString();
     }
 
     public void UpdateLives(int currentLives)

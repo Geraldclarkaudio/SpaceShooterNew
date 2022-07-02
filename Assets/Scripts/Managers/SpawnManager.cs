@@ -12,7 +12,9 @@ public class SpawnManager : MonoBehaviour
     [SerializeField]
     private GameObject powerUpContainer;
     [SerializeField]
-    private GameObject[] powerups; 
+    private GameObject[] powerups;
+    [SerializeField]
+    private int[] puWeights;
 
     public bool playerDied = false;
 
@@ -33,8 +35,9 @@ public class SpawnManager : MonoBehaviour
         while (playerDied == false)
         {
             Vector3 posToSPawn = new Vector3(Random.Range(-15f, 15f), 9, 0);
-            int randomPowerUp = Random.Range(0, 4);
-            GameObject newPowerUp = Instantiate(powerups[randomPowerUp], posToSPawn, Quaternion.identity);
+            int randomPowerUp = Random.Range(0, 5);
+            // GameObject newPowerUp = Instantiate(powerups[randomPowerUp], posToSPawn, Quaternion.identity);
+            GameObject newPowerUp = Instantiate(powerups[GetRandomPowerUp(puWeights)], posToSPawn, Quaternion.identity);
             newPowerUp.transform.parent = powerUpContainer.transform;
             yield return new WaitForSeconds(Random.Range(3f, 7f));
         }
@@ -52,4 +55,33 @@ public class SpawnManager : MonoBehaviour
             yield return new WaitForSeconds(2.5f);
         }
     }
+
+    public int GetRandomPowerUp(int[] Weights)
+    {
+        int sumOfWeights = 0;
+        int randNum;
+
+        for (int i = 0; i < powerups.Length; i++)
+        {
+            sumOfWeights += Weights[i];
+        }
+
+        randNum = Random.Range(0, sumOfWeights);
+
+        for (int i = 0; i < puWeights.Length; i++)
+        {
+            if (randNum < puWeights[i])
+            {
+                return i;
+            }
+
+            randNum -= puWeights[i];
+        }
+
+        return -1;
+    }
+
+
+
+
 }

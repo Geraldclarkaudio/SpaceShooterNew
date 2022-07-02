@@ -16,6 +16,11 @@ public class PowerUp : MonoBehaviour
     [SerializeField]
     private int powerUpID; 
 
+    [SerializeField]
+    private AK.Wwise.Event powerUpCollectedSound;
+    [SerializeField]
+    private AK.Wwise.Switch powerUpSwitch;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -30,10 +35,13 @@ public class PowerUp : MonoBehaviour
     {
         if(other.CompareTag("Player"))
         {
+           
             switch(powerUpID)
             {
                 case 0:
                     player.TripleShotActive();
+                    powerUpSwitch.SetValue(gameObject);
+                    powerUpCollectedSound.Post(gameObject);
                     break;
                 case 1:
                     if(player.isSpeedACtive == true)
@@ -42,17 +50,29 @@ public class PowerUp : MonoBehaviour
                     }
                     else
                     {
+                        powerUpSwitch.SetValue(gameObject);
+                        powerUpCollectedSound.Post(gameObject);
                         player.SpeedActive();
                     }
                     break;
                 case 2:
                     player.ShieldActive();
+                    powerUpSwitch.SetValue(gameObject);
+                    powerUpCollectedSound.Post(gameObject);
                     break;
                 case 3:
                     player.AddHealth();
+                    powerUpSwitch.SetValue(gameObject);
+                    powerUpCollectedSound.Post(gameObject);
+                    break;
+                case 4:
+                    player.AmmoPowerUp();
+                    powerUpSwitch.SetValue(gameObject);
+                    powerUpCollectedSound.Post(gameObject);
                     break;
 
             }
+           
             Destroy(this.gameObject);
         }
     }

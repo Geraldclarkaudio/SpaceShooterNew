@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-
+using UnityEngine.UI;
 
 public class Player : MonoBehaviour
 {
@@ -46,9 +46,19 @@ public class Player : MonoBehaviour
 
     [SerializeField]
     private int score;
+    [SerializeField]
+    private int ammo;
 
+    [SerializeField]
+    private Slider slider;
+    private bool thrusterActive = false;
+    [SerializeField]
+    private float thrusterUISpeed;
+    
     void Start()
     {
+        slider.value = 1;
+        ammo = 15; 
         _lives = 3; 
         _spawnManager = GameObject.Find("Spawn Manager").GetComponent<SpawnManager>();
         _uiManager = GameObject.Find("UIManager").GetComponent<UIManager>();
@@ -72,14 +82,31 @@ public class Player : MonoBehaviour
 
     private void Thruster_canceled(UnityEngine.InputSystem.InputAction.CallbackContext obj)
     {
-        Debug.Log("Not Thrusting anymore");
-        Thruster.SetActive(false);
+        if(slider.value >0)
+        {
+            Thruster.SetActive(false);
+            _speed /= _speedMultiplier;
+            thrusterActive = false;
+        }
+
+        if (slider.value == 0)
+        {
+            _speed = 10;
+        }
+
+
     }
 
     private void Thruster_performed(UnityEngine.InputSystem.InputAction.CallbackContext obj)
     {
-        Debug.Log("Thrusting");
-        Thruster.SetActive(true);
+        if(slider.value > 0)
+        {
+            Thruster.SetActive(true);
+            _speed *= _speedMultiplier;
+            thrusterActive = true;
+        }
+
+        return;
     }
 
     private void Restart_performed(UnityEngine.InputSystem.InputAction.CallbackContext obj)
@@ -111,6 +138,27 @@ public class Player : MonoBehaviour
     void Update()
     {
         Movement();
+
+        if(thrusterActive == true)
+        {
+            if(slider.value > 0)
+            {
+                slider.value -= thrusterUISpeed * Time.deltaTime;
+            }
+            else
+            {
+                Thruster.SetActive(false);
+            }
+        }
+        else 
+        { 
+            slider.value = slider.value;
+        }
+
+        if(slider.value == 0)
+        {
+            _speed = 10;
+        }
     }
 
     private void Movement()
@@ -137,18 +185,24 @@ public class Player : MonoBehaviour
 
     private void Fire()
     {
-        _canFire = Time.time + fireRate;
+        if(ammo > 0)
+        {
+            _canFire = Time.time + fireRate;
 
-        if (isTripleShotEnabled == true)
-        {
-            fired = false;
-            Instantiate(tripleShotPrefab, transform.position + new Vector3(0, 0.8f, 0), Quaternion.identity);
+            if (isTripleShotEnabled == true)
+            {
+                fired = false;
+                Instantiate(tripleShotPrefab, transform.position + new Vector3(0, 0.8f, 0), Quaternion.identity);
+            }
+            else
+            {
+                fired = false;
+                Instantiate(laserPrefab, transform.position + new Vector3(0, 0.8f, 0), Quaternion.identity);
+                ammo--;
+                _uiManager.UpdateAmmo(ammo);
+            }
         }
-        else
-        {
-            fired = false;
-            Instantiate(laserPrefab, transform.position + new Vector3(0, 0.8f, 0), Quaternion.identity);
-        }
+
     }
 
     public void Damage()
@@ -203,6 +257,12 @@ public class Player : MonoBehaviour
     {
         isTripleShotEnabled = true;
         StartCoroutine(TripleShotCoolDown());
+    }
+
+    public void AmmoPowerUp()
+    {
+        ammo = ammo + 5;
+        _uiManager.UpdateAmmo(ammo);
     }
 
     private IEnumerator TripleShotCoolDown()

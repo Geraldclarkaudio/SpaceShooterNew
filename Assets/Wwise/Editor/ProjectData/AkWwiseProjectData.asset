@@ -372,7 +372,7 @@ MonoBehaviour:
     ParentPath: Events\Default Work Unit
     guid: 38f42eda31c8454fbe8f0db36a3af219
     GuidInternal: 
-    m_lastTime: -8585456717889311571
+    m_lastTime: -8585448096767790264
     List: []
   - PhysicalPath: Events\Music.wwu
     PathAndIcons:
@@ -398,7 +398,7 @@ MonoBehaviour:
     ParentPath: Events\SFX
     guid: ae1118dd9977d34dbd2abe9fde25497e
     GuidInternal: 
-    m_lastTime: -8585456717889401361
+    m_lastTime: -8585448096766735507
     List:
     - name: Enemy
       guid: d1ae09dc02c69c419d555590244ad854
@@ -435,8 +435,8 @@ MonoBehaviour:
         guid: 1e270e0a60b8744f981b08fc5c06603a
       Path: Events\SFX\Enemy\EnemyExplode
       maxAttenuation: 0
-      maxDuration: 8
-      minDuration: 8
+      maxDuration: 9.957844
+      minDuration: 6.427094
     - name: EnemyLaserFire
       guid: 24ce741e621f2e48834b0b99963474cc
       id: 3473284984
@@ -475,8 +475,8 @@ MonoBehaviour:
         guid: fcc10493a110f64fb8b547c9def929e1
       Path: Events\SFX\General\Explosion1
       maxAttenuation: 0
-      maxDuration: 8
-      minDuration: 8
+      maxDuration: 8.475705
+      minDuration: 7.550994
     - name: General
       guid: 3cd4942e64a3794f982e60d6d599c8c5
       id: 133642231
@@ -551,6 +551,26 @@ MonoBehaviour:
       maxAttenuation: 0
       maxDuration: 0.796524
       minDuration: 0.639917
+    - name: PowerUpCollected
+      guid: 3aa82763c8e4ed49bce5f169912bdeef
+      id: 2007110528
+      PathAndIcons:
+      - ElementName: Events
+        ObjectType: 5
+        guid: 00000000000000000000000000000000
+      - ElementName: SFX
+        ObjectType: 12
+        guid: ae1118dd9977d34dbd2abe9fde25497e
+      - ElementName: Player
+        ObjectType: 4
+        guid: 65d5b002e2e5c3488776ada7fd11c0a4
+      - ElementName: PowerUpCollected
+        ObjectType: 3
+        guid: 3aa82763c8e4ed49bce5f169912bdeef
+      Path: Events\SFX\Player\PowerUpCollected
+      maxAttenuation: 0
+      maxDuration: 7.428118
+      minDuration: 1
   RtpcWwu:
   - PhysicalPath: Game Parameters\Default Work Unit.wwu
     PathAndIcons:
@@ -746,6 +766,117 @@ MonoBehaviour:
     GuidInternal: 
     m_lastTime: -8585462726966756853
     List: []
+  - PhysicalPath: Switches\PowerUps.wwu
+    PathAndIcons:
+    - ElementName: Switches
+      ObjectType: 5
+      guid: 00000000000000000000000000000000
+    - ElementName: PowerUps
+      ObjectType: 12
+      guid: ff7fe352ef7da041a7be90912a2ae0e1
+    ParentPath: Switches\PowerUps
+    guid: ff7fe352ef7da041a7be90912a2ae0e1
+    GuidInternal: 
+    m_lastTime: -8585448096766394203
+    List:
+    - name: PowerUps
+      guid: b03d6aac6e530149b5143fd1bbaaffb5
+      id: 2600048462
+      PathAndIcons:
+      - ElementName: Switches
+        ObjectType: 5
+        guid: 00000000000000000000000000000000
+      - ElementName: PowerUps
+        ObjectType: 12
+        guid: ff7fe352ef7da041a7be90912a2ae0e1
+      - ElementName: PowerUps
+        ObjectType: 11
+        guid: b03d6aac6e530149b5143fd1bbaaffb5
+      Path: Switches\PowerUps\PowerUps
+      values:
+      - name: Ammo
+        guid: 24f51a3e445c8d45a9b548b18fa31a5c
+        id: 3554434311
+        PathAndIcons:
+        - ElementName: Switches
+          ObjectType: 5
+          guid: 00000000000000000000000000000000
+        - ElementName: PowerUps
+          ObjectType: 12
+          guid: ff7fe352ef7da041a7be90912a2ae0e1
+        - ElementName: PowerUps
+          ObjectType: 11
+          guid: b03d6aac6e530149b5143fd1bbaaffb5
+        - ElementName: Ammo
+          ObjectType: 10
+          guid: 24f51a3e445c8d45a9b548b18fa31a5c
+      - name: Health
+        guid: 882ebc3ba9935842b2c0c8b1f2928304
+        id: 3677180323
+        PathAndIcons:
+        - ElementName: Switches
+          ObjectType: 5
+          guid: 00000000000000000000000000000000
+        - ElementName: PowerUps
+          ObjectType: 12
+          guid: ff7fe352ef7da041a7be90912a2ae0e1
+        - ElementName: PowerUps
+          ObjectType: 11
+          guid: b03d6aac6e530149b5143fd1bbaaffb5
+        - ElementName: Health
+          ObjectType: 10
+          guid: 882ebc3ba9935842b2c0c8b1f2928304
+      - name: Shield
+        guid: 0381e05486468d4587e1d28868944ecf
+        id: 1161967626
+        PathAndIcons:
+        - ElementName: Switches
+          ObjectType: 5
+          guid: 00000000000000000000000000000000
+        - ElementName: PowerUps
+          ObjectType: 12
+          guid: ff7fe352ef7da041a7be90912a2ae0e1
+        - ElementName: PowerUps
+          ObjectType: 11
+          guid: b03d6aac6e530149b5143fd1bbaaffb5
+        - ElementName: Shield
+          ObjectType: 10
+          guid: 0381e05486468d4587e1d28868944ecf
+      - name: Speed
+        guid: fa1d399100971c439d29a6b6fd1c609b
+        id: 640949982
+        PathAndIcons:
+        - ElementName: Switches
+          ObjectType: 5
+          guid: 00000000000000000000000000000000
+        - ElementName: PowerUps
+          ObjectType: 12
+          guid: ff7fe352ef7da041a7be90912a2ae0e1
+        - ElementName: PowerUps
+          ObjectType: 11
+          guid: b03d6aac6e530149b5143fd1bbaaffb5
+        - ElementName: Speed
+          ObjectType: 10
+          guid: fa1d399100971c439d29a6b6fd1c609b
+      - name: TripleShot
+        guid: ec3e09d63736e64ea4957295bbe7b1d9
+        id: 2134712769
+        PathAndIcons:
+        - ElementName: Switches
+          ObjectType: 5
+          guid: 00000000000000000000000000000000
+        - ElementName: PowerUps
+          ObjectType: 12
+          guid: ff7fe352ef7da041a7be90912a2ae0e1
+        - ElementName: PowerUps
+          ObjectType: 11
+          guid: b03d6aac6e530149b5143fd1bbaaffb5
+        - ElementName: TripleShot
+          ObjectType: 10
+          guid: ec3e09d63736e64ea4957295bbe7b1d9
+      ValueGuids: []
+      ValueIcons: []
+      valuesInternal: []
   TriggerWwu:
   - PhysicalPath: Triggers\Default Work Unit.wwu
     PathAndIcons:
@@ -761,7 +892,7 @@ MonoBehaviour:
     m_lastTime: -8585462726963945029
     List: []
   ExpandedFileSystemItemIds: 
-  ExpandedWaapiItemIds: 01000000050000000600000008000000090000000a0000000c0000003172010018d50200
+  ExpandedWaapiItemIds: 01000000050000000600000008000000090000000a0000000b0000000c0000001200000014000000150000003172010018d50200
   AutoSyncSelection: 0
   autoPopulateEnabled: 1
   currentDataSource: 0
