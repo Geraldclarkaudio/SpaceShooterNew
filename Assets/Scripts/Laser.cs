@@ -7,7 +7,7 @@ public class Laser : MonoBehaviour
     [SerializeField]
     private float _speed;
 
-    private bool isEnemyLaser = false;
+    public bool isEnemyLaser = false;
 
     private Player player;
 
@@ -39,7 +39,7 @@ public class Laser : MonoBehaviour
             Destroy(this.gameObject);
         }
 
-        if(other.CompareTag("Asteroid"))
+        if (other.CompareTag("Asteroid"))
         {
             Destroy(this.gameObject);
         }
@@ -47,6 +47,12 @@ public class Laser : MonoBehaviour
         if(other.CompareTag("Player") && isEnemyLaser == true)
         {
             player.Damage();
+        }
+
+        if(other.CompareTag("Enemy") && isEnemyLaser == true)
+        {
+            Debug.Log("DO Nothing");
+            return;
         }
     }
     // Update is called once per frame
@@ -96,5 +102,6 @@ public class Laser : MonoBehaviour
     public void AssignEnemyLaser()
     {
         isEnemyLaser = true;
+        this.tag = "EnemyLaser";
     }
 }

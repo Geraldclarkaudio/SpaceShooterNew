@@ -10,6 +10,7 @@ public class Enemy : MonoBehaviour
     private Player _player;
     private Animator _anim;
     private BoxCollider2D col;
+    private Animator camAnim;
 
     [SerializeField]
     private GameObject enemyLaser;
@@ -18,6 +19,7 @@ public class Enemy : MonoBehaviour
     private float _canFire = -1f;
 
     public AK.Wwise.Event destroyed;
+
 
     private void Start()
     {
@@ -28,6 +30,7 @@ public class Enemy : MonoBehaviour
         }
         _anim = GetComponent<Animator>();
         col = GetComponent<BoxCollider2D>();
+        camAnim = GameObject.Find("Main Camera").GetComponent<Animator>();
     }
 
     private void OnTriggerEnter2D(Collider2D other)
@@ -47,6 +50,7 @@ public class Enemy : MonoBehaviour
         {
             _anim.SetBool("Hit", true);
             destroyed.Post(gameObject);
+            camAnim.SetTrigger("Shake");
             Destroy(this.gameObject, 2.5f); 
             _player.Damage();
         }
@@ -80,10 +84,5 @@ public class Enemy : MonoBehaviour
         {
             transform.position = new Vector3(randomX, 9, 0);
         }
-    }
-
-    private void Fire()
-    {
-
     }
 }

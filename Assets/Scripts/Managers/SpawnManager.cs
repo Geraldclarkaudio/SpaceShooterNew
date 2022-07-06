@@ -5,23 +5,43 @@ using UnityEngine;
 public class SpawnManager : MonoBehaviour
 {
     [SerializeField]
-    private GameObject plainEnemy;
+    private GameObject powerUpContainer;
     [SerializeField]
     private GameObject enemyContainer;
 
-    [SerializeField]
-    private GameObject powerUpContainer;
     [SerializeField]
     private GameObject[] powerups;
     [SerializeField]
     private int[] puWeights;
 
+
+    [SerializeField]
+    private GameObject[] enemies;
+    [SerializeField]
+    private int[] enemyWeights;
+
+    [SerializeField]
+    private int enemiesSpawned = 0;
+
+    public int wave;
+
     public bool playerDied = false;
+
+    private void Start()
+    {
+        wave = 1;
+    }
 
     public void StartSpawning()
     {
-        StartCoroutine(SpawnPlainEnemy());
+        StartCoroutine(SpawnEnemies());
         StartCoroutine(PowerUpSpawner());
+    }
+
+    public void StopSpawning()
+    {
+        StopCoroutine(SpawnEnemies());
+        StopCoroutine(PowerUpSpawner());
     }
     public void PlayerDied()
     {
@@ -29,31 +49,75 @@ public class SpawnManager : MonoBehaviour
         Destroy(enemyContainer);
     }
 
-    IEnumerator PowerUpSpawner()
+    IEnumerator PowerUpSpawner() //POWER UPS
     {
         yield return new WaitForSeconds(2.0f); 
         while (playerDied == false)
         {
             Vector3 posToSPawn = new Vector3(Random.Range(-15f, 15f), 9, 0);
-            int randomPowerUp = Random.Range(0, 5);
-            // GameObject newPowerUp = Instantiate(powerups[randomPowerUp], posToSPawn, Quaternion.identity);
+            //int randomPowerUp = Random.Range(0, 6);
             GameObject newPowerUp = Instantiate(powerups[GetRandomPowerUp(puWeights)], posToSPawn, Quaternion.identity);
             newPowerUp.transform.parent = powerUpContainer.transform;
             yield return new WaitForSeconds(Random.Range(3f, 7f));
         }
     }
+    //Spawns Powerups dependednt on their weight value.
 
-    IEnumerator SpawnPlainEnemy()
+   IEnumerator SpawnEnemies()//ENEMIES
     {
-        yield return new WaitForSeconds(2.0f);
+        yield return new WaitForSeconds(1.0f);
 
         while (playerDied == false)
         {
-            Vector3 posToSPawn = new Vector3(Random.Range(-15f, 15f), 9, 0);
-            GameObject newEnemy = Instantiate(plainEnemy, posToSPawn, Quaternion.identity);
+            Vector3 posToSpawn = new Vector3(Random.Range(-15f, 15f), 9, 0);
+            GameObject newEnemy = Instantiate(enemies[GetRandomEnemy(enemyWeights)], posToSpawn, Quaternion.identity);
             newEnemy.transform.parent = enemyContainer.transform;
-            yield return new WaitForSeconds(2.5f);
-        }
+            if(wave == 1)
+            {
+                yield return new WaitForSeconds(Random.Range(1.5f, 2.5f));
+            }
+            if(wave == 2)
+            {
+                yield return new WaitForSeconds(Random.Range(1.0f, 1.75f));
+            }
+            if(wave == 3)
+            {
+                yield return new WaitForSeconds(Random.Range(0.5f, 1.0f));
+            }
+            
+            enemiesSpawned++;
+
+            if(enemiesSpawned == 5 && wave == 1)
+            {
+                StartCoroutine(WaveChanger());
+                //update UI Manager. 
+                yield break;
+            }
+
+            if(enemiesSpawned == 10 && wave == 2)
+            {
+                StartCoroutine(WaveChanger());
+                //update UI Manager. 
+                yield break;
+            }
+
+            if(enemiesSpawned == 15 && wave ==3)
+            {
+                StartCoroutine(WaveChanger());
+
+                yield break;            }
+            }
+
+    } // Spawns Enemies dependednt on their weight value. 
+
+    IEnumerator WaveChanger()
+    {
+       
+        yield return new WaitForSeconds(7.0f);
+        wave++;
+        enemiesSpawned = 0;
+        StartCoroutine(SpawnEnemies());
+        Debug.Log("Wave: " + wave);
     }
 
     public int GetRandomPowerUp(int[] Weights)
@@ -81,7 +145,28 @@ public class SpawnManager : MonoBehaviour
         return -1;
     }
 
+    public int GetRandomEnemy(int[] Weights)
+    {
+        int sumOfWeights = 0;
+        int randNum;
 
+        for (int i = 0; i < enemies.Length; i++)
+        {
+            sumOfWeights += Weights[i];
+        }
 
+        randNum = Random.Range(0, sumOfWeights);
 
+        for(int i = 0; i < enemyWeights.Length; i++)
+        {
+            if(randNum < enemyWeights[i])
+            {
+                return i;
+            }
+
+            randNum -= enemyWeights[i];
+        }
+
+        return -1;
+    }
 }

@@ -570,7 +570,7 @@ MonoBehaviour:
       Path: Events\SFX\Player\PowerUpCollected
       maxAttenuation: 0
       maxDuration: 7.428118
-      minDuration: 1
+      minDuration: 0.574694
   RtpcWwu:
   - PhysicalPath: Game Parameters\Default Work Unit.wwu
     PathAndIcons:

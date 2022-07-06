@@ -10,9 +10,11 @@ public class IntroAsteroid : MonoBehaviour
     private GameObject explosionPrefab;
 
     private SpawnManager _spawnManager;
+    private Animator camAnim;
 
     private void Start()
     {
+        camAnim = GameObject.Find("Main Camera").GetComponent<Animator>();
         _spawnManager = GameObject.Find("Spawn Manager").GetComponent<SpawnManager>();
     }
 
@@ -22,6 +24,7 @@ public class IntroAsteroid : MonoBehaviour
         if (other.CompareTag("Laser"))
         {
             Instantiate(explosionPrefab, transform.position, Quaternion.identity);
+            camAnim.SetTrigger("Shake");
             _spawnManager.StartSpawning();
             Destroy(this.gameObject);
 

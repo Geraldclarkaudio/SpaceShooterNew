@@ -44,16 +44,10 @@ public class PowerUp : MonoBehaviour
                     powerUpCollectedSound.Post(gameObject);
                     break;
                 case 1:
-                    if(player.isSpeedACtive == true)
-                    {
-                        return;
-                    }
-                    else
-                    {
-                        powerUpSwitch.SetValue(gameObject);
-                        powerUpCollectedSound.Post(gameObject);
-                        player.SpeedActive();
-                    }
+                    powerUpSwitch.SetValue(gameObject);
+                    powerUpCollectedSound.Post(gameObject);
+                    player.SpeedActive();
+
                     break;
                 case 2:
                     player.ShieldActive();
@@ -67,6 +61,11 @@ public class PowerUp : MonoBehaviour
                     break;
                 case 4:
                     player.AmmoPowerUp();
+                    powerUpSwitch.SetValue(gameObject);
+                    powerUpCollectedSound.Post(gameObject);
+                    break;
+                case 5:
+                    player.SpreadShotActive();
                     powerUpSwitch.SetValue(gameObject);
                     powerUpCollectedSound.Post(gameObject);
                     break;

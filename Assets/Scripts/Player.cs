@@ -22,6 +22,8 @@ public class Player : MonoBehaviour
     private GameObject laserPrefab;
     [SerializeField]
     private GameObject tripleShotPrefab;
+    [SerializeField]
+    private GameObject spreadShotPrefab;
     private float _canFire = -1f;
     [SerializeField]
     private float fireRate = 0.1f;
@@ -42,6 +44,7 @@ public class Player : MonoBehaviour
     public bool isTripleShotEnabled = false;
     public bool isShieldActive = false;
     public bool isSpeedACtive = false;
+    public bool spreadShotActive = false;
     public GameObject Thruster;
 
     [SerializeField]
@@ -54,20 +57,31 @@ public class Player : MonoBehaviour
     private bool thrusterActive = false;
     [SerializeField]
     private float thrusterUISpeed;
-    
-    void Start()
+
+    private Animator camAnim;
+    public float fuel;
+
+    private void Awake()
     {
-        slider.value = 1;
-        ammo = 15; 
-        _lives = 3; 
-        _spawnManager = GameObject.Find("Spawn Manager").GetComponent<SpawnManager>();
-        _uiManager = GameObject.Find("UIManager").GetComponent<UIManager>();
         _input = new GameInput();
-        _input.PlayerControls.Enable();
+       
         _input.PlayerControls.Fire.performed += Fire_performed;
         _input.PlayerControls.Restart.performed += Restart_performed;
         _input.PlayerControls.Thruster.performed += Thruster_performed;
         _input.PlayerControls.Thruster.canceled += Thruster_canceled;
+
+        _input.PlayerControls.Enable();
+    }
+
+    void Start()
+    {
+        slider.value = 1;
+        ammo = 15; 
+        _lives = 3;
+        camAnim = GameObject.Find("Main Camera").GetComponent<Animator>();
+        _spawnManager = GameObject.Find("Spawn Manager").GetComponent<SpawnManager>();
+        _uiManager = GameObject.Find("UIManager").GetComponent<UIManager>();
+
 
         if (_uiManager == null)
         {
@@ -82,31 +96,38 @@ public class Player : MonoBehaviour
 
     private void Thruster_canceled(UnityEngine.InputSystem.InputAction.CallbackContext obj)
     {
-        if(slider.value >0)
+        if(_spawnManager.playerDied == false)
         {
-            Thruster.SetActive(false);
-            _speed /= _speedMultiplier;
             thrusterActive = false;
+            Thruster.SetActive(false);
+
+            if (slider.value > 0)
+            {
+
+                _speed /= _speedMultiplier;
+
+            }
+
+            if (slider.value == 0)
+            {
+                _speed = 10;
+            }
         }
-
-        if (slider.value == 0)
-        {
-            _speed = 10;
-        }
-
-
     }
 
     private void Thruster_performed(UnityEngine.InputSystem.InputAction.CallbackContext obj)
     {
-        if(slider.value > 0)
+        if(_spawnManager.playerDied == false)
         {
-            Thruster.SetActive(true);
-            _speed *= _speedMultiplier;
-            thrusterActive = true;
-        }
+            if (slider.value > 0)
+            {
+                Thruster.SetActive(true);
+                _speed *= _speedMultiplier;
+                thrusterActive = true;
+            }
 
-        return;
+            return;
+        }
     }
 
     private void Restart_performed(UnityEngine.InputSystem.InputAction.CallbackContext obj)
@@ -194,6 +215,11 @@ public class Player : MonoBehaviour
                 fired = false;
                 Instantiate(tripleShotPrefab, transform.position + new Vector3(0, 0.8f, 0), Quaternion.identity);
             }
+            else if(spreadShotActive == true)
+            {
+                fired = false;
+                Instantiate(spreadShotPrefab, transform.position + new Vector3(0, 0.8f, 0), Quaternion.identity);
+            }
             else
             {
                 fired = false;
@@ -216,7 +242,7 @@ public class Player : MonoBehaviour
         }
 
         _lives--;
-
+        camAnim.SetTrigger("Shake");
         if (_lives == 2)
         {
             engines[0].SetActive(true);
@@ -228,8 +254,6 @@ public class Player : MonoBehaviour
         }
 
         _uiManager.UpdateLives(_lives);
-
-
         //You dead boi
         if(_lives <= 0)
         {
@@ -259,6 +283,18 @@ public class Player : MonoBehaviour
         StartCoroutine(TripleShotCoolDown());
     }
 
+    public void SpreadShotActive()
+    {
+        spreadShotActive = true;
+        StartCoroutine(SpreadShotCoolDown());
+    }
+
+    private IEnumerator SpreadShotCoolDown()
+    {
+        yield return new WaitForSeconds(5.0f);
+        spreadShotActive = false;
+    }
+
     public void AmmoPowerUp()
     {
         ammo = ammo + 5;
@@ -272,10 +308,8 @@ public class Player : MonoBehaviour
     }
 
     public void SpeedActive()
-    {
-        _speed *= _speedMultiplier;
-        isSpeedACtive = true;
-        StartCoroutine(SpeedCoolDown());
+    { 
+        slider.value += fuel;
     }
 
     private IEnumerator SpeedCoolDown()
