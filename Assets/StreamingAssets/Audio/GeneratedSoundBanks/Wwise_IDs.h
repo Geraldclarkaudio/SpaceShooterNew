@@ -16,13 +16,29 @@ namespace AK
         static const AkUniqueID ENEMYEXPLODE = 904483370U;
         static const AkUniqueID ENEMYLASERFIRE = 3473284984U;
         static const AkUniqueID EXPLOSION1 = 753483767U;
+        static const AkUniqueID MUSICPLAY = 1205645828U;
         static const AkUniqueID PLAYER_CHARGE_UP = 366335619U;
         static const AkUniqueID PLAYERLASER = 2920283527U;
         static const AkUniqueID POWERUPCOLLECTED = 2007110528U;
+        static const AkUniqueID WAVE_ALERT = 1849362485U;
     } // namespace EVENTS
 
     namespace SWITCHES
     {
+        namespace MUSIC
+        {
+            static const AkUniqueID GROUP = 3991942870U;
+
+            namespace SWITCH
+            {
+                static const AkUniqueID BOSSFIGHT = 580146960U;
+                static const AkUniqueID OFF = 930712164U;
+                static const AkUniqueID WAVE1 = 2453122375U;
+                static const AkUniqueID WAVE2 = 2453122372U;
+                static const AkUniqueID WAVE3 = 2453122373U;
+            } // namespace SWITCH
+        } // namespace MUSIC
+
         namespace POWERUPS
         {
             static const AkUniqueID GROUP = 2600048462U;
@@ -52,6 +68,11 @@ namespace AK
         static const AkUniqueID SS_AIR_TIMEOFDAY = 3203397129U;
         static const AkUniqueID SS_AIR_TURBULENCE = 4160247818U;
     } // namespace GAME_PARAMETERS
+
+    namespace TRIGGERS
+    {
+        static const AkUniqueID CYMBAL_SWELL = 2077047193U;
+    } // namespace TRIGGERS
 
     namespace BANKS
     {

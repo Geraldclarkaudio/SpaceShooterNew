@@ -372,7 +372,7 @@ MonoBehaviour:
     ParentPath: Events\Default Work Unit
     guid: 38f42eda31c8454fbe8f0db36a3af219
     GuidInternal: 
-    m_lastTime: -8585448096767790264
+    m_lastTime: -8585432517810831658
     List: []
   - PhysicalPath: Events\Music.wwu
     PathAndIcons:
@@ -385,8 +385,25 @@ MonoBehaviour:
     ParentPath: Events\Music
     guid: ef93af2136a4ec4aaf2a08acb6e5db5d
     GuidInternal: 
-    m_lastTime: -8585459372354084570
-    List: []
+    m_lastTime: -8585432392490929430
+    List:
+    - name: MusicPlay
+      guid: 55ade66efc7e7248a4d5bf264d293ff2
+      id: 1205645828
+      PathAndIcons:
+      - ElementName: Events
+        ObjectType: 5
+        guid: 00000000000000000000000000000000
+      - ElementName: Music
+        ObjectType: 12
+        guid: ef93af2136a4ec4aaf2a08acb6e5db5d
+      - ElementName: MusicPlay
+        ObjectType: 3
+        guid: 55ade66efc7e7248a4d5bf264d293ff2
+      Path: Events\Music\MusicPlay
+      maxAttenuation: 0
+      maxDuration: -1
+      minDuration: -1
   - PhysicalPath: Events\SFX.wwu
     PathAndIcons:
     - ElementName: Events
@@ -398,7 +415,7 @@ MonoBehaviour:
     ParentPath: Events\SFX
     guid: ae1118dd9977d34dbd2abe9fde25497e
     GuidInternal: 
-    m_lastTime: -8585448096766735507
+    m_lastTime: -8585432518138270175
     List:
     - name: Enemy
       guid: d1ae09dc02c69c419d555590244ad854
@@ -571,6 +588,26 @@ MonoBehaviour:
       maxAttenuation: 0
       maxDuration: 7.428118
       minDuration: 0.574694
+    - name: Wave_Alert
+      guid: a29dc79c82cf6c4db922f0672876f3b5
+      id: 1849362485
+      PathAndIcons:
+      - ElementName: Events
+        ObjectType: 5
+        guid: 00000000000000000000000000000000
+      - ElementName: SFX
+        ObjectType: 12
+        guid: ae1118dd9977d34dbd2abe9fde25497e
+      - ElementName: General
+        ObjectType: 4
+        guid: 3cd4942e64a3794f982e60d6d599c8c5
+      - ElementName: Wave_Alert
+        ObjectType: 3
+        guid: a29dc79c82cf6c4db922f0672876f3b5
+      Path: Events\SFX\General\Wave_Alert
+      maxAttenuation: 0
+      maxDuration: 0.5
+      minDuration: 0.5
   RtpcWwu:
   - PhysicalPath: Game Parameters\Default Work Unit.wwu
     PathAndIcons:
@@ -766,6 +803,117 @@ MonoBehaviour:
     GuidInternal: 
     m_lastTime: -8585462726966756853
     List: []
+  - PhysicalPath: Switches\Music.wwu
+    PathAndIcons:
+    - ElementName: Switches
+      ObjectType: 5
+      guid: 00000000000000000000000000000000
+    - ElementName: Music
+      ObjectType: 12
+      guid: 8f0e47a58786be4f887d9d6d46f5bc1e
+    ParentPath: Switches\Music
+    guid: 8f0e47a58786be4f887d9d6d46f5bc1e
+    GuidInternal: 
+    m_lastTime: -8585432392491016220
+    List:
+    - name: Music
+      guid: 379984673e55874684eefa2c5ce24bcb
+      id: 3991942870
+      PathAndIcons:
+      - ElementName: Switches
+        ObjectType: 5
+        guid: 00000000000000000000000000000000
+      - ElementName: Music
+        ObjectType: 12
+        guid: 8f0e47a58786be4f887d9d6d46f5bc1e
+      - ElementName: Music
+        ObjectType: 11
+        guid: 379984673e55874684eefa2c5ce24bcb
+      Path: Switches\Music\Music
+      values:
+      - name: BossFight
+        guid: 0fc5867b3eaefd4aaf37b2b3aff60d5a
+        id: 580146960
+        PathAndIcons:
+        - ElementName: Switches
+          ObjectType: 5
+          guid: 00000000000000000000000000000000
+        - ElementName: Music
+          ObjectType: 12
+          guid: 8f0e47a58786be4f887d9d6d46f5bc1e
+        - ElementName: Music
+          ObjectType: 11
+          guid: 379984673e55874684eefa2c5ce24bcb
+        - ElementName: BossFight
+          ObjectType: 10
+          guid: 0fc5867b3eaefd4aaf37b2b3aff60d5a
+      - name: Off
+        guid: 1f37705c5e54bf4eb1fef9e71657b70c
+        id: 930712164
+        PathAndIcons:
+        - ElementName: Switches
+          ObjectType: 5
+          guid: 00000000000000000000000000000000
+        - ElementName: Music
+          ObjectType: 12
+          guid: 8f0e47a58786be4f887d9d6d46f5bc1e
+        - ElementName: Music
+          ObjectType: 11
+          guid: 379984673e55874684eefa2c5ce24bcb
+        - ElementName: Off
+          ObjectType: 10
+          guid: 1f37705c5e54bf4eb1fef9e71657b70c
+      - name: Wave1
+        guid: d6925c9d50d2004e948f1544c845e215
+        id: 2453122375
+        PathAndIcons:
+        - ElementName: Switches
+          ObjectType: 5
+          guid: 00000000000000000000000000000000
+        - ElementName: Music
+          ObjectType: 12
+          guid: 8f0e47a58786be4f887d9d6d46f5bc1e
+        - ElementName: Music
+          ObjectType: 11
+          guid: 379984673e55874684eefa2c5ce24bcb
+        - ElementName: Wave1
+          ObjectType: 10
+          guid: d6925c9d50d2004e948f1544c845e215
+      - name: Wave2
+        guid: 8b42f8f23d135f4e851fe953ed20afbe
+        id: 2453122372
+        PathAndIcons:
+        - ElementName: Switches
+          ObjectType: 5
+          guid: 00000000000000000000000000000000
+        - ElementName: Music
+          ObjectType: 12
+          guid: 8f0e47a58786be4f887d9d6d46f5bc1e
+        - ElementName: Music
+          ObjectType: 11
+          guid: 379984673e55874684eefa2c5ce24bcb
+        - ElementName: Wave2
+          ObjectType: 10
+          guid: 8b42f8f23d135f4e851fe953ed20afbe
+      - name: Wave3
+        guid: 5fcbe00d0812ee449551316366f803a6
+        id: 2453122373
+        PathAndIcons:
+        - ElementName: Switches
+          ObjectType: 5
+          guid: 00000000000000000000000000000000
+        - ElementName: Music
+          ObjectType: 12
+          guid: 8f0e47a58786be4f887d9d6d46f5bc1e
+        - ElementName: Music
+          ObjectType: 11
+          guid: 379984673e55874684eefa2c5ce24bcb
+        - ElementName: Wave3
+          ObjectType: 10
+          guid: 5fcbe00d0812ee449551316366f803a6
+      ValueGuids: []
+      ValueIcons: []
+      valuesInternal: []
   - PhysicalPath: Switches\PowerUps.wwu
     PathAndIcons:
     - ElementName: Switches
@@ -891,8 +1039,35 @@ MonoBehaviour:
     GuidInternal: 
     m_lastTime: -8585462726963945029
     List: []
+  - PhysicalPath: Triggers\Music Triggers.wwu
+    PathAndIcons:
+    - ElementName: Triggers
+      ObjectType: 5
+      guid: 00000000000000000000000000000000
+    - ElementName: Music Triggers
+      ObjectType: 12
+      guid: 0b2483e7b6140846ba89e8d8be06c874
+    ParentPath: Triggers\Music Triggers
+    guid: 0b2483e7b6140846ba89e8d8be06c874
+    GuidInternal: 
+    m_lastTime: -8585432518138139867
+    List:
+    - name: Cymbal_Swell
+      guid: fb8ba27eb7c5a94c8c5a23c981b79097
+      id: 2077047193
+      PathAndIcons:
+      - ElementName: Triggers
+        ObjectType: 5
+        guid: 00000000000000000000000000000000
+      - ElementName: Music Triggers
+        ObjectType: 12
+        guid: 0b2483e7b6140846ba89e8d8be06c874
+      - ElementName: Cymbal_Swell
+        ObjectType: 14
+        guid: fb8ba27eb7c5a94c8c5a23c981b79097
+      Path: Triggers\Music Triggers\Cymbal_Swell
   ExpandedFileSystemItemIds: 
-  ExpandedWaapiItemIds: 01000000050000000600000008000000090000000a0000000b0000000c0000001200000014000000150000003172010018d50200
+  ExpandedWaapiItemIds: 0100000005000000060000000700000008000000090000000a0000000b0000000c00000012000000130000001400000015000000160000003172010018d50200
   AutoSyncSelection: 0
   autoPopulateEnabled: 1
   currentDataSource: 0

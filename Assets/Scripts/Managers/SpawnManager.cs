@@ -27,9 +27,14 @@ public class SpawnManager : MonoBehaviour
 
     public bool playerDied = false;
 
+    public AK.Wwise.Event music;
+  
+
     private void Start()
     {
+        music.Post(gameObject);
         wave = 1;
+        AkSoundEngine.SetSwitch("Music", "Wave1", gameObject);
     }
 
     public void StartSpawning()
@@ -90,6 +95,8 @@ public class SpawnManager : MonoBehaviour
             if(enemiesSpawned == 5 && wave == 1)
             {
                 StartCoroutine(WaveChanger());
+
+                AkSoundEngine.SetSwitch("Music", "Wave2", gameObject);
                 //update UI Manager. 
                 yield break;
             }
@@ -97,22 +104,26 @@ public class SpawnManager : MonoBehaviour
             if(enemiesSpawned == 10 && wave == 2)
             {
                 StartCoroutine(WaveChanger());
+                AkSoundEngine.SetSwitch("Music", "Wave3", gameObject);
+
                 //update UI Manager. 
                 yield break;
             }
 
-            if(enemiesSpawned == 15 && wave ==3)
+            if (enemiesSpawned == 15 && wave == 3)
             {
                 StartCoroutine(WaveChanger());
+                AkSoundEngine.SetSwitch("Music", "BossFight", gameObject);
 
-                yield break;            }
+                yield break;
             }
+        }
 
     } // Spawns Enemies dependednt on their weight value. 
 
     IEnumerator WaveChanger()
     {
-       
+        StopCoroutine(SpawnEnemies());
         yield return new WaitForSeconds(7.0f);
         wave++;
         enemiesSpawned = 0;
