@@ -21,6 +21,9 @@ public class SpawnManager : MonoBehaviour
     private int[] enemyWeights;
 
     [SerializeField]
+    private GameObject bossEnemy1;
+
+    [SerializeField]
     private int enemiesSpawned = 0;
 
     public int wave;
@@ -28,10 +31,14 @@ public class SpawnManager : MonoBehaviour
     public bool playerDied = false;
 
     public AK.Wwise.Event music;
+    public AK.Wwise.Event stinger;
+
+    private UIManager uiManager;
   
 
     private void Start()
     {
+        uiManager = GameObject.Find("UIManager").GetComponent<UIManager>();
         music.Post(gameObject);
         wave = 1;
         AkSoundEngine.SetSwitch("Music", "Wave1", gameObject);
@@ -41,6 +48,18 @@ public class SpawnManager : MonoBehaviour
     {
         StartCoroutine(SpawnEnemies());
         StartCoroutine(PowerUpSpawner());
+        
+        if(wave <= 3)
+        {
+            stinger.Post(gameObject);
+            uiManager.UpdateWaveText("WAVE " + wave);
+        }
+
+        else if(wave > 3)
+        {
+            uiManager.UpdateWaveText("BOSS FIGHT");
+        }
+        
     }
 
     public void StopSpawning()
@@ -52,6 +71,7 @@ public class SpawnManager : MonoBehaviour
     {
         playerDied = true;
         Destroy(enemyContainer);
+        music.Stop(gameObject);
     }
 
     IEnumerator PowerUpSpawner() //POWER UPS
@@ -95,9 +115,7 @@ public class SpawnManager : MonoBehaviour
             if(enemiesSpawned == 5 && wave == 1)
             {
                 StartCoroutine(WaveChanger());
-
                 AkSoundEngine.SetSwitch("Music", "Wave2", gameObject);
-                //update UI Manager. 
                 yield break;
             }
 
@@ -105,8 +123,6 @@ public class SpawnManager : MonoBehaviour
             {
                 StartCoroutine(WaveChanger());
                 AkSoundEngine.SetSwitch("Music", "Wave3", gameObject);
-
-                //update UI Manager. 
                 yield break;
             }
 
@@ -114,7 +130,13 @@ public class SpawnManager : MonoBehaviour
             {
                 StartCoroutine(WaveChanger());
                 AkSoundEngine.SetSwitch("Music", "BossFight", gameObject);
+                yield break;
+            }
 
+            if(wave == 4)
+            {
+                bossEnemy1.SetActive(true);
+                StopSpawning();
                 yield break;
             }
         }
@@ -123,12 +145,11 @@ public class SpawnManager : MonoBehaviour
 
     IEnumerator WaveChanger()
     {
-        StopCoroutine(SpawnEnemies());
+        StopSpawning();
         yield return new WaitForSeconds(7.0f);
         wave++;
         enemiesSpawned = 0;
-        StartCoroutine(SpawnEnemies());
-        Debug.Log("Wave: " + wave);
+        StartSpawning();
     }
 
     public int GetRandomPowerUp(int[] Weights)

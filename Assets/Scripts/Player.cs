@@ -61,6 +61,10 @@ public class Player : MonoBehaviour
     private Animator camAnim;
     public float fuel;
 
+    [Header("DialogInput")]
+    public bool dialogIsPlaying;
+    public bool dialogContinuePressed = false;
+
     private void Awake()
     {
         _input = new GameInput();
@@ -69,9 +73,12 @@ public class Player : MonoBehaviour
         _input.PlayerControls.Restart.performed += Restart_performed;
         _input.PlayerControls.Thruster.performed += Thruster_performed;
         _input.PlayerControls.Thruster.canceled += Thruster_canceled;
+        _input.PlayerControls.ContinueDialog.performed += ContinueDialog_performed;
 
         _input.PlayerControls.Enable();
     }
+
+ 
 
     void Start()
     {
@@ -92,6 +99,25 @@ public class Player : MonoBehaviour
         {
             Debug.LogError("Spawn Manager is null");
         }    
+    }
+
+    private void ContinueDialog_performed(UnityEngine.InputSystem.InputAction.CallbackContext context)
+    {
+        if (context.performed)
+        {
+            if (dialogIsPlaying == true)
+            {
+                dialogContinuePressed = true;
+                Debug.Log("dialoggg");
+            }
+        }
+    }
+
+    public bool GetDialogContinuePressed()
+    {
+        bool result = dialogContinuePressed;
+        dialogContinuePressed = false;
+        return result;
     }
 
     private void Thruster_canceled(UnityEngine.InputSystem.InputAction.CallbackContext obj)
@@ -134,6 +160,7 @@ public class Player : MonoBehaviour
     {
         if(GameManager.Instance.isGameOver == true)
         {
+            _input.PlayerControls.Disable();
             RestartGame();
         }
         else
@@ -158,6 +185,11 @@ public class Player : MonoBehaviour
 
     void Update()
     {
+        if(dialogIsPlaying == true) //prevents movement when dialog is playing
+        {
+            return;
+        }
+            
         Movement();
 
         if(thrusterActive == true)

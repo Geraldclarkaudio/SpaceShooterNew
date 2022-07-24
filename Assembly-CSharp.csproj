@@ -66,6 +66,11 @@
     <Compile Include="Assets\SCI-FI UI Pack Pro\Common\Scripts\SliderRunTo1.cs" />
     <Compile Include="Assets\SCI-FI UI Pack Pro\Common\Scripts\SliderValuePass.cs" />
     <Compile Include="Assets\Scripts\Asteroid.cs" />
+    <Compile Include="Assets\Scripts\Boss\BeamBehavior.cs" />
+    <Compile Include="Assets\Scripts\Boss\Boss1.cs" />
+    <Compile Include="Assets\Scripts\Boss\BossDialog.cs" />
+    <Compile Include="Assets\Scripts\Boss\LaserBehavior.cs" />
+    <Compile Include="Assets\Scripts\Dialog\Dialog.cs" />
     <Compile Include="Assets\Scripts\Enemy.cs" />
     <Compile Include="Assets\Scripts\IntroAsteroid.cs" />
     <Compile Include="Assets\Scripts\Laser.cs" />

@@ -19,6 +19,10 @@ public class UIManager : MonoBehaviour
     private GameObject gameOverText;
     [SerializeField]
     private GameObject restartText;
+    [SerializeField]
+    private TMP_Text waveText;
+    [SerializeField]
+    private GameObject waveTextPanel;
    
 
     private Player player; 
@@ -51,6 +55,28 @@ public class UIManager : MonoBehaviour
             StartCoroutine(TextFlicker());
             restartText.SetActive(true);
         }
+    }
+
+    public void UpdateWaveText(string text)
+    {
+        waveText.text = text;
+        StartCoroutine(WAVETextFlicker());
+    }
+
+    private IEnumerator WAVETextFlicker()
+    {
+        waveTextPanel.SetActive(true);
+        yield return new WaitForSeconds(0.5f);
+        waveTextPanel.SetActive(false);
+        yield return new WaitForSeconds(0.5f);
+        waveTextPanel.SetActive(true);
+        yield return new WaitForSeconds(0.5f);
+        waveTextPanel.SetActive(false);
+        yield return new WaitForSeconds(0.5f);
+        waveTextPanel.SetActive(true);
+        yield return new WaitForSeconds(0.5f);
+        waveTextPanel.SetActive(false);
+        yield return new WaitForSeconds(0.5f);
     }
 
     private IEnumerator TextFlicker()

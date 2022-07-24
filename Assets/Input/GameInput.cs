@@ -71,6 +71,15 @@ public partial class @GameInput : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""ContinueDialog"",
+                    ""type"": ""Button"",
+                    ""id"": ""5c1553fb-4b3d-4d1b-aabd-06adfdc975c1"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -154,7 +163,7 @@ public partial class @GameInput : IInputActionCollection2, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""5c4ffe03-b8c6-462a-99b3-a8ec939dc885"",
-                    ""path"": ""<Gamepad>/buttonSouth"",
+                    ""path"": ""<Gamepad>/buttonWest"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
@@ -227,6 +236,28 @@ public partial class @GameInput : IInputActionCollection2, IDisposable
                     ""action"": ""QuitButton"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""5985d5b1-2dd7-478f-81de-19326496299f"",
+                    ""path"": ""<Keyboard>/enter"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""ContinueDialog"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""bfb15392-546d-40db-8b33-359fb2f06fe4"",
+                    ""path"": ""<Gamepad>/buttonSouth"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""ContinueDialog"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -240,6 +271,7 @@ public partial class @GameInput : IInputActionCollection2, IDisposable
         m_PlayerControls_Restart = m_PlayerControls.FindAction("Restart", throwIfNotFound: true);
         m_PlayerControls_Thruster = m_PlayerControls.FindAction("Thruster", throwIfNotFound: true);
         m_PlayerControls_QuitButton = m_PlayerControls.FindAction("QuitButton", throwIfNotFound: true);
+        m_PlayerControls_ContinueDialog = m_PlayerControls.FindAction("ContinueDialog", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -304,6 +336,7 @@ public partial class @GameInput : IInputActionCollection2, IDisposable
     private readonly InputAction m_PlayerControls_Restart;
     private readonly InputAction m_PlayerControls_Thruster;
     private readonly InputAction m_PlayerControls_QuitButton;
+    private readonly InputAction m_PlayerControls_ContinueDialog;
     public struct PlayerControlsActions
     {
         private @GameInput m_Wrapper;
@@ -313,6 +346,7 @@ public partial class @GameInput : IInputActionCollection2, IDisposable
         public InputAction @Restart => m_Wrapper.m_PlayerControls_Restart;
         public InputAction @Thruster => m_Wrapper.m_PlayerControls_Thruster;
         public InputAction @QuitButton => m_Wrapper.m_PlayerControls_QuitButton;
+        public InputAction @ContinueDialog => m_Wrapper.m_PlayerControls_ContinueDialog;
         public InputActionMap Get() { return m_Wrapper.m_PlayerControls; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -337,6 +371,9 @@ public partial class @GameInput : IInputActionCollection2, IDisposable
                 @QuitButton.started -= m_Wrapper.m_PlayerControlsActionsCallbackInterface.OnQuitButton;
                 @QuitButton.performed -= m_Wrapper.m_PlayerControlsActionsCallbackInterface.OnQuitButton;
                 @QuitButton.canceled -= m_Wrapper.m_PlayerControlsActionsCallbackInterface.OnQuitButton;
+                @ContinueDialog.started -= m_Wrapper.m_PlayerControlsActionsCallbackInterface.OnContinueDialog;
+                @ContinueDialog.performed -= m_Wrapper.m_PlayerControlsActionsCallbackInterface.OnContinueDialog;
+                @ContinueDialog.canceled -= m_Wrapper.m_PlayerControlsActionsCallbackInterface.OnContinueDialog;
             }
             m_Wrapper.m_PlayerControlsActionsCallbackInterface = instance;
             if (instance != null)
@@ -356,6 +393,9 @@ public partial class @GameInput : IInputActionCollection2, IDisposable
                 @QuitButton.started += instance.OnQuitButton;
                 @QuitButton.performed += instance.OnQuitButton;
                 @QuitButton.canceled += instance.OnQuitButton;
+                @ContinueDialog.started += instance.OnContinueDialog;
+                @ContinueDialog.performed += instance.OnContinueDialog;
+                @ContinueDialog.canceled += instance.OnContinueDialog;
             }
         }
     }
@@ -367,5 +407,6 @@ public partial class @GameInput : IInputActionCollection2, IDisposable
         void OnRestart(InputAction.CallbackContext context);
         void OnThruster(InputAction.CallbackContext context);
         void OnQuitButton(InputAction.CallbackContext context);
+        void OnContinueDialog(InputAction.CallbackContext context);
     }
 }
