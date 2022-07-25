@@ -724,13 +724,21 @@ MonoBehaviour:
   music:
     idInternal: 0
     valueGuidInternal: 
-    WwiseObjectReference: {fileID: 11400000, guid: ea618ee8909a14c44afd14d301a885ed,
+    WwiseObjectReference: {fileID: 11400000, guid: e27fb80e461ea68468e9f48d2f3f632a,
       type: 2}
   stinger:
     idInternal: 0
     valueGuidInternal: 
     WwiseObjectReference: {fileID: 11400000, guid: 3303dc8221b1b8b4081ca9454ebec5fc,
       type: 2}
+  switchGroupName:
+  - Wave1
+  - Wave2
+  - Wave3
+  - BossFight
+  switchName:
+  - Off
+  - On
 --- !u!4 &492834216
 Transform:
   m_ObjectHideFlags: 0

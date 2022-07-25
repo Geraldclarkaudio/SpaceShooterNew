@@ -16,7 +16,7 @@ namespace AK
         static const AkUniqueID ENEMYEXPLODE = 904483370U;
         static const AkUniqueID ENEMYLASERFIRE = 3473284984U;
         static const AkUniqueID EXPLOSION1 = 753483767U;
-        static const AkUniqueID MUSICPLAY = 1205645828U;
+        static const AkUniqueID MUSIC = 3991942870U;
         static const AkUniqueID PLAYER_CHARGE_UP = 366335619U;
         static const AkUniqueID PLAYERLASER = 2920283527U;
         static const AkUniqueID POWERUPCOLLECTED = 2007110528U;
@@ -25,19 +25,16 @@ namespace AK
 
     namespace SWITCHES
     {
-        namespace MUSIC
+        namespace BOSSFIGHT
         {
-            static const AkUniqueID GROUP = 3991942870U;
+            static const AkUniqueID GROUP = 580146960U;
 
             namespace SWITCH
             {
-                static const AkUniqueID BOSSFIGHT = 580146960U;
                 static const AkUniqueID OFF = 930712164U;
-                static const AkUniqueID WAVE1 = 2453122375U;
-                static const AkUniqueID WAVE2 = 2453122372U;
-                static const AkUniqueID WAVE3 = 2453122373U;
+                static const AkUniqueID ON = 1651971902U;
             } // namespace SWITCH
-        } // namespace MUSIC
+        } // namespace BOSSFIGHT
 
         namespace POWERUPS
         {
@@ -52,6 +49,39 @@ namespace AK
                 static const AkUniqueID TRIPLESHOT = 2134712769U;
             } // namespace SWITCH
         } // namespace POWERUPS
+
+        namespace WAVE1
+        {
+            static const AkUniqueID GROUP = 2453122375U;
+
+            namespace SWITCH
+            {
+                static const AkUniqueID OFF = 930712164U;
+                static const AkUniqueID ON = 1651971902U;
+            } // namespace SWITCH
+        } // namespace WAVE1
+
+        namespace WAVE2
+        {
+            static const AkUniqueID GROUP = 2453122372U;
+
+            namespace SWITCH
+            {
+                static const AkUniqueID OFF = 930712164U;
+                static const AkUniqueID ON = 1651971902U;
+            } // namespace SWITCH
+        } // namespace WAVE2
+
+        namespace WAVE3
+        {
+            static const AkUniqueID GROUP = 2453122373U;
+
+            namespace SWITCH
+            {
+                static const AkUniqueID OFF = 930712164U;
+                static const AkUniqueID ON = 1651971902U;
+            } // namespace SWITCH
+        } // namespace WAVE3
 
     } // namespace SWITCHES
 

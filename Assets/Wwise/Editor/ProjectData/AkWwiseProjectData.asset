@@ -372,7 +372,7 @@ MonoBehaviour:
     ParentPath: Events\Default Work Unit
     guid: 38f42eda31c8454fbe8f0db36a3af219
     GuidInternal: 
-    m_lastTime: -8585432517810831658
+    m_lastTime: -8585428350722079269
     List: []
   - PhysicalPath: Events\Music.wwu
     PathAndIcons:
@@ -385,11 +385,11 @@ MonoBehaviour:
     ParentPath: Events\Music
     guid: ef93af2136a4ec4aaf2a08acb6e5db5d
     GuidInternal: 
-    m_lastTime: -8585432392490929430
+    m_lastTime: -8585428274166435165
     List:
-    - name: MusicPlay
-      guid: 55ade66efc7e7248a4d5bf264d293ff2
-      id: 1205645828
+    - name: Music
+      guid: 5f9035f4b8181247b15f5e633162f806
+      id: 3991942870
       PathAndIcons:
       - ElementName: Events
         ObjectType: 5
@@ -397,10 +397,10 @@ MonoBehaviour:
       - ElementName: Music
         ObjectType: 12
         guid: ef93af2136a4ec4aaf2a08acb6e5db5d
-      - ElementName: MusicPlay
+      - ElementName: Music
         ObjectType: 3
-        guid: 55ade66efc7e7248a4d5bf264d293ff2
-      Path: Events\Music\MusicPlay
+        guid: 5f9035f4b8181247b15f5e633162f806
+      Path: Events\Music\Music
       maxAttenuation: 0
       maxDuration: -1
       minDuration: -1
@@ -814,11 +814,11 @@ MonoBehaviour:
     ParentPath: Switches\Music
     guid: 8f0e47a58786be4f887d9d6d46f5bc1e
     GuidInternal: 
-    m_lastTime: -8585432392491016220
+    m_lastTime: -8585428310759754905
     List:
-    - name: Music
-      guid: 379984673e55874684eefa2c5ce24bcb
-      id: 3991942870
+    - name: ArticleSwitches
+      guid: f27d423353a1904f8ee533bc4e1d2957
+      id: 881781165
       PathAndIcons:
       - ElementName: Switches
         ObjectType: 5
@@ -826,29 +826,34 @@ MonoBehaviour:
       - ElementName: Music
         ObjectType: 12
         guid: 8f0e47a58786be4f887d9d6d46f5bc1e
+      - ElementName: ArticleSwitches
+        ObjectType: 4
+        guid: f27d423353a1904f8ee533bc4e1d2957
+      Path: Switches\Music\ArticleSwitches
+      values: []
+      ValueGuids: []
+      ValueIcons: []
+      valuesInternal: []
+    - name: BossFight
+      guid: dd09dece7787814d94fdf4084fbf8f81
+      id: 580146960
+      PathAndIcons:
+      - ElementName: Switches
+        ObjectType: 5
+        guid: 00000000000000000000000000000000
       - ElementName: Music
+        ObjectType: 12
+        guid: 8f0e47a58786be4f887d9d6d46f5bc1e
+      - ElementName: ArticleSwitches
+        ObjectType: 4
+        guid: f27d423353a1904f8ee533bc4e1d2957
+      - ElementName: BossFight
         ObjectType: 11
-        guid: 379984673e55874684eefa2c5ce24bcb
-      Path: Switches\Music\Music
+        guid: dd09dece7787814d94fdf4084fbf8f81
+      Path: Switches\Music\ArticleSwitches\BossFight
       values:
-      - name: BossFight
-        guid: 0fc5867b3eaefd4aaf37b2b3aff60d5a
-        id: 580146960
-        PathAndIcons:
-        - ElementName: Switches
-          ObjectType: 5
-          guid: 00000000000000000000000000000000
-        - ElementName: Music
-          ObjectType: 12
-          guid: 8f0e47a58786be4f887d9d6d46f5bc1e
-        - ElementName: Music
-          ObjectType: 11
-          guid: 379984673e55874684eefa2c5ce24bcb
-        - ElementName: BossFight
-          ObjectType: 10
-          guid: 0fc5867b3eaefd4aaf37b2b3aff60d5a
       - name: Off
-        guid: 1f37705c5e54bf4eb1fef9e71657b70c
+        guid: 0aa1ad4d14cf4148b4c1b46b29586763
         id: 930712164
         PathAndIcons:
         - ElementName: Switches
@@ -857,15 +862,18 @@ MonoBehaviour:
         - ElementName: Music
           ObjectType: 12
           guid: 8f0e47a58786be4f887d9d6d46f5bc1e
-        - ElementName: Music
+        - ElementName: ArticleSwitches
+          ObjectType: 4
+          guid: f27d423353a1904f8ee533bc4e1d2957
+        - ElementName: BossFight
           ObjectType: 11
-          guid: 379984673e55874684eefa2c5ce24bcb
+          guid: dd09dece7787814d94fdf4084fbf8f81
         - ElementName: Off
           ObjectType: 10
-          guid: 1f37705c5e54bf4eb1fef9e71657b70c
-      - name: Wave1
-        guid: d6925c9d50d2004e948f1544c845e215
-        id: 2453122375
+          guid: 0aa1ad4d14cf4148b4c1b46b29586763
+      - name: On
+        guid: e80442fb73b2a2489b606fb1e7a390e4
+        id: 1651971902
         PathAndIcons:
         - ElementName: Switches
           ObjectType: 5
@@ -873,15 +881,58 @@ MonoBehaviour:
         - ElementName: Music
           ObjectType: 12
           guid: 8f0e47a58786be4f887d9d6d46f5bc1e
-        - ElementName: Music
+        - ElementName: ArticleSwitches
+          ObjectType: 4
+          guid: f27d423353a1904f8ee533bc4e1d2957
+        - ElementName: BossFight
           ObjectType: 11
-          guid: 379984673e55874684eefa2c5ce24bcb
+          guid: dd09dece7787814d94fdf4084fbf8f81
+        - ElementName: On
+          ObjectType: 10
+          guid: e80442fb73b2a2489b606fb1e7a390e4
+      ValueGuids: []
+      ValueIcons: []
+      valuesInternal: []
+    - name: Wave1
+      guid: b98351430e530e45aa90c21e617a48d0
+      id: 2453122375
+      PathAndIcons:
+      - ElementName: Switches
+        ObjectType: 5
+        guid: 00000000000000000000000000000000
+      - ElementName: Music
+        ObjectType: 12
+        guid: 8f0e47a58786be4f887d9d6d46f5bc1e
+      - ElementName: ArticleSwitches
+        ObjectType: 4
+        guid: f27d423353a1904f8ee533bc4e1d2957
+      - ElementName: Wave1
+        ObjectType: 11
+        guid: b98351430e530e45aa90c21e617a48d0
+      Path: Switches\Music\ArticleSwitches\Wave1
+      values:
+      - name: Off
+        guid: 6ab062cb20232c4aaa10df68138e998d
+        id: 930712164
+        PathAndIcons:
+        - ElementName: Switches
+          ObjectType: 5
+          guid: 00000000000000000000000000000000
+        - ElementName: Music
+          ObjectType: 12
+          guid: 8f0e47a58786be4f887d9d6d46f5bc1e
+        - ElementName: ArticleSwitches
+          ObjectType: 4
+          guid: f27d423353a1904f8ee533bc4e1d2957
         - ElementName: Wave1
+          ObjectType: 11
+          guid: b98351430e530e45aa90c21e617a48d0
+        - ElementName: Off
           ObjectType: 10
-          guid: d6925c9d50d2004e948f1544c845e215
-      - name: Wave2
-        guid: 8b42f8f23d135f4e851fe953ed20afbe
-        id: 2453122372
+          guid: 6ab062cb20232c4aaa10df68138e998d
+      - name: On
+        guid: c9e7a29cf4c83f4ab00efb58acd4b76b
+        id: 1651971902
         PathAndIcons:
         - ElementName: Switches
           ObjectType: 5
@@ -889,15 +940,58 @@ MonoBehaviour:
         - ElementName: Music
           ObjectType: 12
           guid: 8f0e47a58786be4f887d9d6d46f5bc1e
-        - ElementName: Music
+        - ElementName: ArticleSwitches
+          ObjectType: 4
+          guid: f27d423353a1904f8ee533bc4e1d2957
+        - ElementName: Wave1
           ObjectType: 11
-          guid: 379984673e55874684eefa2c5ce24bcb
+          guid: b98351430e530e45aa90c21e617a48d0
+        - ElementName: On
+          ObjectType: 10
+          guid: c9e7a29cf4c83f4ab00efb58acd4b76b
+      ValueGuids: []
+      ValueIcons: []
+      valuesInternal: []
+    - name: Wave2
+      guid: 2a16d45b65c31f4cb22974b2b96542fd
+      id: 2453122372
+      PathAndIcons:
+      - ElementName: Switches
+        ObjectType: 5
+        guid: 00000000000000000000000000000000
+      - ElementName: Music
+        ObjectType: 12
+        guid: 8f0e47a58786be4f887d9d6d46f5bc1e
+      - ElementName: ArticleSwitches
+        ObjectType: 4
+        guid: f27d423353a1904f8ee533bc4e1d2957
+      - ElementName: Wave2
+        ObjectType: 11
+        guid: 2a16d45b65c31f4cb22974b2b96542fd
+      Path: Switches\Music\ArticleSwitches\Wave2
+      values:
+      - name: Off
+        guid: 7fe6705b1fcb03489943adf33b57ba70
+        id: 930712164
+        PathAndIcons:
+        - ElementName: Switches
+          ObjectType: 5
+          guid: 00000000000000000000000000000000
+        - ElementName: Music
+          ObjectType: 12
+          guid: 8f0e47a58786be4f887d9d6d46f5bc1e
+        - ElementName: ArticleSwitches
+          ObjectType: 4
+          guid: f27d423353a1904f8ee533bc4e1d2957
         - ElementName: Wave2
+          ObjectType: 11
+          guid: 2a16d45b65c31f4cb22974b2b96542fd
+        - ElementName: Off
           ObjectType: 10
-          guid: 8b42f8f23d135f4e851fe953ed20afbe
-      - name: Wave3
-        guid: 5fcbe00d0812ee449551316366f803a6
-        id: 2453122373
+          guid: 7fe6705b1fcb03489943adf33b57ba70
+      - name: On
+        guid: cb86fa465d37c54c93438ccaa612b231
+        id: 1651971902
         PathAndIcons:
         - ElementName: Switches
           ObjectType: 5
@@ -905,12 +999,74 @@ MonoBehaviour:
         - ElementName: Music
           ObjectType: 12
           guid: 8f0e47a58786be4f887d9d6d46f5bc1e
-        - ElementName: Music
+        - ElementName: ArticleSwitches
+          ObjectType: 4
+          guid: f27d423353a1904f8ee533bc4e1d2957
+        - ElementName: Wave2
           ObjectType: 11
-          guid: 379984673e55874684eefa2c5ce24bcb
-        - ElementName: Wave3
+          guid: 2a16d45b65c31f4cb22974b2b96542fd
+        - ElementName: On
           ObjectType: 10
-          guid: 5fcbe00d0812ee449551316366f803a6
+          guid: cb86fa465d37c54c93438ccaa612b231
+      ValueGuids: []
+      ValueIcons: []
+      valuesInternal: []
+    - name: Wave3
+      guid: dcafa0589ffef944a4e02f4b91455251
+      id: 2453122373
+      PathAndIcons:
+      - ElementName: Switches
+        ObjectType: 5
+        guid: 00000000000000000000000000000000
+      - ElementName: Music
+        ObjectType: 12
+        guid: 8f0e47a58786be4f887d9d6d46f5bc1e
+      - ElementName: ArticleSwitches
+        ObjectType: 4
+        guid: f27d423353a1904f8ee533bc4e1d2957
+      - ElementName: Wave3
+        ObjectType: 11
+        guid: dcafa0589ffef944a4e02f4b91455251
+      Path: Switches\Music\ArticleSwitches\Wave3
+      values:
+      - name: Off
+        guid: 3a221b433efe644fad6e876567d94dcf
+        id: 930712164
+        PathAndIcons:
+        - ElementName: Switches
+          ObjectType: 5
+          guid: 00000000000000000000000000000000
+        - ElementName: Music
+          ObjectType: 12
+          guid: 8f0e47a58786be4f887d9d6d46f5bc1e
+        - ElementName: ArticleSwitches
+          ObjectType: 4
+          guid: f27d423353a1904f8ee533bc4e1d2957
+        - ElementName: Wave3
+          ObjectType: 11
+          guid: dcafa0589ffef944a4e02f4b91455251
+        - ElementName: Off
+          ObjectType: 10
+          guid: 3a221b433efe644fad6e876567d94dcf
+      - name: On
+        guid: bce5fa5138599d4ab03de54c4623ecc7
+        id: 1651971902
+        PathAndIcons:
+        - ElementName: Switches
+          ObjectType: 5
+          guid: 00000000000000000000000000000000
+        - ElementName: Music
+          ObjectType: 12
+          guid: 8f0e47a58786be4f887d9d6d46f5bc1e
+        - ElementName: ArticleSwitches
+          ObjectType: 4
+          guid: f27d423353a1904f8ee533bc4e1d2957
+        - ElementName: Wave3
+          ObjectType: 11
+          guid: dcafa0589ffef944a4e02f4b91455251
+        - ElementName: On
+          ObjectType: 10
+          guid: bce5fa5138599d4ab03de54c4623ecc7
       ValueGuids: []
       ValueIcons: []
       valuesInternal: []

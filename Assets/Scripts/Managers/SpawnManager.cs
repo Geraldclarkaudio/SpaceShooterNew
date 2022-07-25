@@ -34,32 +34,36 @@ public class SpawnManager : MonoBehaviour
     public AK.Wwise.Event stinger;
 
     private UIManager uiManager;
-  
 
+    public string[] switchGroupName;
+    public string[] switchName;
+  
     private void Start()
     {
         uiManager = GameObject.Find("UIManager").GetComponent<UIManager>();
         music.Post(gameObject);
         wave = 1;
-        AkSoundEngine.SetSwitch("Music", "Wave1", gameObject);
     }
 
     public void StartSpawning()
     {
         StartCoroutine(SpawnEnemies());
         StartCoroutine(PowerUpSpawner());
-        
-        if(wave <= 3)
+
+        if (wave <= 3)
         {
-            stinger.Post(gameObject);
+           
             uiManager.UpdateWaveText("WAVE " + wave);
         }
 
-        else if(wave > 3)
+        else if (wave > 3)
         {
             uiManager.UpdateWaveText("BOSS FIGHT");
+
         }
-        
+        stinger.Post(gameObject);
+        AkSoundEngine.SetSwitch(switchGroupName[wave - 1], switchName[1], gameObject);
+
     }
 
     public void StopSpawning()
@@ -115,21 +119,21 @@ public class SpawnManager : MonoBehaviour
             if(enemiesSpawned == 5 && wave == 1)
             {
                 StartCoroutine(WaveChanger());
-                AkSoundEngine.SetSwitch("Music", "Wave2", gameObject);
+                //AkSoundEngine.SetSwitch("Music", "Wave2", gameObject);
                 yield break;
             }
 
             if(enemiesSpawned == 10 && wave == 2)
             {
                 StartCoroutine(WaveChanger());
-                AkSoundEngine.SetSwitch("Music", "Wave3", gameObject);
+                //AkSoundEngine.SetSwitch("Music", "Wave3", gameObject);
                 yield break;
             }
 
             if (enemiesSpawned == 15 && wave == 3)
             {
                 StartCoroutine(WaveChanger());
-                AkSoundEngine.SetSwitch("Music", "BossFight", gameObject);
+                //AkSoundEngine.SetSwitch("Music", "BossFight", gameObject);
                 yield break;
             }
 
