@@ -8,6 +8,7 @@ TagManager:
   - Laser
   - Asteroid
   - EnemyLaser
+  - Boss
   layers:
   - Default
   - TransparentFX

@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using Ink.Runtime;
-
+using UnityEngine.UI;
 public class Boss1 : MonoBehaviour
 {
     [SerializeField]
@@ -26,6 +26,11 @@ public class Boss1 : MonoBehaviour
     private Vector3 leftFire;
     private Vector3 rightFire;
 
+    public int health = 150;
+    public SpriteRenderer _renderer;
+
+    public Slider slider; 
+
 
     // Start is called before the first frame update
     void Start()
@@ -33,17 +38,33 @@ public class Boss1 : MonoBehaviour
     {
         player = GameObject.Find("Player").GetComponent<Player>();
         bossDialog = GetComponent<BossDialog>();
+        _renderer = GetComponent<SpriteRenderer>();
         transform.position = new Vector3(0, 16, 0); //Spawn above screen bounds.
         leftFire = new Vector3(-4, -4, 0);
         rightFire = new Vector3(4, -4, 0);
 
-        Fire();
+        StartCoroutine(WaitToFire());
+    }
+
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        if(other.CompareTag("Laser"))
+        {
+            Damage();
+        }
     }
 
     // Update is called once per frame
     void Update()
     {
         Movement();
+
+
+        if (health == 0)
+        {
+            slider.value = 0;
+            Destroy(this.gameObject);
+        }
     }
 
     public void Movement()
@@ -77,7 +98,6 @@ public class Boss1 : MonoBehaviour
         StartCoroutine(LeftFireRoutine());
         StartCoroutine(RightFireRoutine());
         StartCoroutine(FireBeamRoutine());
-
     }
 
     IEnumerator LeftFireRoutine()
@@ -107,5 +127,26 @@ public class Boss1 : MonoBehaviour
             beamPrefab.SetActive(false);
             
         }
+    }
+
+    IEnumerator WaitToFire()
+    {
+        yield return new WaitForSeconds(5.0f);
+        Fire();
+    }
+
+    public void Damage()
+    {
+        health--;
+        slider.value = slider.value - 0.006666667f;
+        StartCoroutine(colorFlashHit());
+
+    }
+
+    IEnumerator colorFlashHit()
+    {
+        _renderer.color = Color.red;
+        yield return new WaitForSeconds(0.05f);
+        _renderer.color = Color.white;
     }
 }

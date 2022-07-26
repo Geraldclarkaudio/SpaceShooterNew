@@ -17,11 +17,13 @@ public class Laser : MonoBehaviour
     [SerializeField]
     private AK.Wwise.Event enemyLaser;
 
+   
+
     void Start()
     {
         player = GameObject.Find("Player").GetComponent<Player>();
-
-        if(isEnemyLaser == false)
+                
+        if (isEnemyLaser == false)
         {
             playerLaser.Post(gameObject);
         }
