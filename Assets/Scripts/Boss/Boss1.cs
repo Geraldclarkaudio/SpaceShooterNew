@@ -29,8 +29,13 @@ public class Boss1 : MonoBehaviour
     public int health = 150;
     public SpriteRenderer _renderer;
 
-    public Slider slider; 
+    public Slider slider;
 
+    public Transform[] explosionLocations;
+    public GameObject exlodePrefab;
+    public GameObject bigExplosion;
+
+    public bool isDead;
 
     // Start is called before the first frame update
     void Start()
@@ -42,7 +47,7 @@ public class Boss1 : MonoBehaviour
         transform.position = new Vector3(0, 16, 0); //Spawn above screen bounds.
         leftFire = new Vector3(-4, -4, 0);
         rightFire = new Vector3(4, -4, 0);
-
+        isDead = false;
         StartCoroutine(WaitToFire());
     }
 
@@ -57,13 +62,24 @@ public class Boss1 : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Movement();
-
-
-        if (health == 0)
+        if(health >= 0.1f)
         {
-            slider.value = 0;
-            Destroy(this.gameObject);
+            Movement();
+        }
+
+
+        if (health <= 0)
+        {
+            isDead = true;
+            if(isDead == true)
+            {
+                slider.value = 0;
+                Destroy(this.gameObject, 10f);
+                StartCoroutine(ExplodeRoutine());
+                StartCoroutine(BigExplosion());
+                isDead = false;
+            }
+            
         }
     }
 
@@ -124,8 +140,7 @@ public class Boss1 : MonoBehaviour
             yield return new WaitForSeconds(Random.Range(10,15));
             beamPrefab.SetActive(true);
             yield return new WaitForSeconds(5f);
-            beamPrefab.SetActive(false);
-            
+            beamPrefab.SetActive(false);        
         }
     }
 
@@ -148,5 +163,27 @@ public class Boss1 : MonoBehaviour
         _renderer.color = Color.red;
         yield return new WaitForSeconds(0.05f);
         _renderer.color = Color.white;
+    }
+
+    IEnumerator ExplodeRoutine()
+    {
+        yield return new WaitForSeconds(1.5f);
+        Instantiate(exlodePrefab, explosionLocations[0].position, Quaternion.identity);
+        yield return new WaitForSeconds(1.5f);
+        Instantiate(exlodePrefab, explosionLocations[1].position, Quaternion.identity);
+        yield return new WaitForSeconds(1.5f);
+        Instantiate(exlodePrefab, explosionLocations[2].position, Quaternion.identity);
+        yield return new WaitForSeconds(1.5f);
+        Instantiate(exlodePrefab, explosionLocations[3].position, Quaternion.identity);
+        yield return new WaitForSeconds(1.5f);
+        Instantiate(exlodePrefab, explosionLocations[0].position, Quaternion.identity);
+        yield return new WaitForSeconds(1.5f);
+        Instantiate(exlodePrefab, explosionLocations[1].position, Quaternion.identity);
+    }
+
+    IEnumerator BigExplosion()
+    {
+        yield return new WaitForSeconds(9f);
+        Instantiate(bigExplosion, transform.position, Quaternion.identity);      
     }
 }

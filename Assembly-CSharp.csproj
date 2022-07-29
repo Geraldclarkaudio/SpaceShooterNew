@@ -72,6 +72,7 @@
     <Compile Include="Assets\Scripts\Boss\LaserBehavior.cs" />
     <Compile Include="Assets\Scripts\Dialog\Dialog.cs" />
     <Compile Include="Assets\Scripts\Enemy.cs" />
+    <Compile Include="Assets\Scripts\ExplosionBehavior.cs" />
     <Compile Include="Assets\Scripts\IntroAsteroid.cs" />
     <Compile Include="Assets\Scripts\Laser.cs" />
     <Compile Include="Assets\Scripts\Managers\GameManager.cs" />

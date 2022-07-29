@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 8879519152482550024}
   - component: {fileID: 1844310378822624431}
   - component: {fileID: 3166303512894485317}
+  - component: {fileID: 3813813666127398574}
   m_Layer: 0
   m_Name: ExplodePrefab
   m_TagString: Untagged
@@ -72,7 +73,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 1111
   m_Sprite: {fileID: 21300000, guid: 1d67ba02a3ae743ed81501156742929f, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -155,3 +156,15 @@ MonoBehaviour:
   eventIdInternal: 0
   valueGuidInternal: 
   m_callbackDataInternal: {fileID: 0}
+--- !u!114 &3813813666127398574
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6711726941510406854}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 29b2c5ae7e639c142a7475a508dfd09e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
