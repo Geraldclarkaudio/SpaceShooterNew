@@ -25,7 +25,7 @@ public class SpawnManager : MonoBehaviour
 
     [SerializeField]
     private int enemiesSpawned = 0;
-
+    public int enemiesDestroyed;
     public int wave;
 
     public bool playerDied = false;
@@ -132,12 +132,12 @@ public class SpawnManager : MonoBehaviour
 
             if (enemiesSpawned == 15 && wave == 3)
             {
-                StartCoroutine(WaveChanger());
+                 StartCoroutine(WaveChanger());
                 //AkSoundEngine.SetSwitch("Music", "BossFight", gameObject);
                 yield break;
             }
 
-            if(wave == 4)
+            if(wave == 4 && enemiesDestroyed >= 30)
             {
                 bossEnemy1.SetActive(true);
                 StopSpawning();

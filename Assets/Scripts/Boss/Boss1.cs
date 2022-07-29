@@ -37,10 +37,14 @@ public class Boss1 : MonoBehaviour
 
     public bool isDead;
 
+    public GameObject youWinPanel;
+    private SpawnManager spawnManager;
+
     // Start is called before the first frame update
     void Start()
 
     {
+        spawnManager = GameObject.Find("Spawn Manager").GetComponent<SpawnManager>();
         player = GameObject.Find("Player").GetComponent<Player>();
         bossDialog = GetComponent<BossDialog>();
         _renderer = GetComponent<SpriteRenderer>();
@@ -55,7 +59,16 @@ public class Boss1 : MonoBehaviour
     {
         if(other.CompareTag("Laser"))
         {
-            Damage();
+            if(isDead == false)
+            {
+                Damage();
+            }
+
+            else if(isDead == true)
+            {
+                return;
+            }
+           
         }
     }
 
@@ -65,21 +78,6 @@ public class Boss1 : MonoBehaviour
         if(health >= 0.1f)
         {
             Movement();
-        }
-
-
-        if (health <= 0)
-        {
-            isDead = true;
-            if(isDead == true)
-            {
-                slider.value = 0;
-                Destroy(this.gameObject, 10f);
-                StartCoroutine(ExplodeRoutine());
-                StartCoroutine(BigExplosion());
-                isDead = false;
-            }
-            
         }
     }
 
@@ -156,6 +154,15 @@ public class Boss1 : MonoBehaviour
         slider.value = slider.value - 0.006666667f;
         StartCoroutine(colorFlashHit());
 
+        if (health <= 0)
+        {
+            isDead = true;
+                slider.value = 0;
+                Destroy(this.gameObject, 10f);
+                StartCoroutine(ExplodeRoutine());
+            StartCoroutine(BigExplosion());
+        }
+
     }
 
     IEnumerator colorFlashHit()
@@ -183,7 +190,10 @@ public class Boss1 : MonoBehaviour
 
     IEnumerator BigExplosion()
     {
+        spawnManager.StopSpawning();
         yield return new WaitForSeconds(9f);
-        Instantiate(bigExplosion, transform.position, Quaternion.identity);      
+
+        Instantiate(bigExplosion, transform.position, Quaternion.identity);
+        youWinPanel.SetActive(true);
     }
 }

@@ -20,6 +20,8 @@ public class Enemy : MonoBehaviour
 
     public AK.Wwise.Event destroyed;
 
+    private SpawnManager spawnManager;
+
 
     private void Start()
     {
@@ -28,6 +30,7 @@ public class Enemy : MonoBehaviour
         {
             Debug.LogError("Player is Null");
         }
+        spawnManager = GameObject.Find("Spawn Manager").GetComponent<SpawnManager>();
         _anim = GetComponent<Animator>();
         col = GetComponent<BoxCollider2D>();
         camAnim = GameObject.Find("Main Camera").GetComponent<Animator>();
@@ -43,6 +46,7 @@ public class Enemy : MonoBehaviour
             _player.ScoreKeeper(10);
             col.enabled = false;
             destroyed.Post(gameObject);
+            spawnManager.enemiesDestroyed++;
             Destroy(this.gameObject, 2.5f);
         }
 
@@ -51,6 +55,7 @@ public class Enemy : MonoBehaviour
             _anim.SetBool("Hit", true);
             destroyed.Post(gameObject);
             camAnim.SetTrigger("Shake");
+            spawnManager.enemiesDestroyed++;
             Destroy(this.gameObject, 2.5f); 
             _player.Damage();
         }
